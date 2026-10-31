@@ -19,8 +19,13 @@ export default defineConfig({
 
   // Rapports
   reporter: [
-    ['list'],
-    ['html', { open: 'never' }],
+    ['html', {
+      outputFolder: 'playwright-report',
+      open: 'never'
+    }],
+    ['junit', {
+      outputFile: 'junit-results.xml'
+    }]
   ],
 
   // Configuration commune
