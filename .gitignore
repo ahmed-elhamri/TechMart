@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Playwright reports
+playwright-report/
+test-results/
+
+# Environment variables
+.env
+.env.*
+
+# IDE
+.vscode/
+
+# Operating system
+.DS_Store
+Thumbs.db
