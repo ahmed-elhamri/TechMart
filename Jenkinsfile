@@ -29,9 +29,24 @@ pipeline {
             }
         }
         
-        stage('Execute Playwright Tests') {
+        // stage('Execute Playwright Tests') {
+        //     steps {
+        //         bat 'npx playwright test tests/TS-CART.spec.js'
+        //     }
+        // }
+
+        stage('Run Playwright Tests') {
             steps {
-                bat 'npx playwright test tests/TS-CART.spec.js'
+                script {
+                    def exitCode = bat(
+                        script: 'npx playwright test tests/TS-CART.spec.js',
+                        returnStatus: true
+                    )
+
+                    if (exitCode != 0) {
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
             }
         }
     }
