@@ -142,16 +142,23 @@ pipeline {
 
             $reportUrl = "$env:BUILD_URL" + "Playwright_20HTML_20Report/"
 
-            $summary = "Playwright $suiteName - Build #$env:BUILD_NUMBER"
+            $summary = "Playwright Automated Test Execution"
 
-            $description = "Automated Playwright Test Execution.`n`n" +
-              "Project: TEC`n" +
-              "Test Suite: $suiteName`n`n" +
-              "Jenkins Build:`n$env:BUILD_URL`n`n" +
-              "Build Number:`n$env:BUILD_NUMBER`n`n" +
-              "Execution Date:`n$executionDate`n`n" +
-              "Playwright Test Duration:`n$duration seconds`n`n" +
-              "Playwright HTML Report:`n$reportUrl"
+            if ($suiteNames.Count -eq 1) {
+                $suiteDescription = "Test Suite: $($suiteNames[0])"
+            }
+            else {
+                $suiteDescription = "Test Suites:`n" +
+                    (($suiteNames | ForEach-Object { "- $_" }) -join "`n")
+            }
+
+            $description = "Project: TEC`n`n" +
+                "$suiteDescription`n`n" +
+                "Jenkins Build: $env:BUILD_URL`n`n" +
+                "Build Number: $env:BUILD_NUMBER`n`n" +
+                "Execution Date: $executionDate`n`n" +
+                "Playwright Test Duration: $duration seconds`n`n" +
+                "Playwright HTML Report: $reportUrl"
 
             $executionInfo = @{
                 fields = @{
