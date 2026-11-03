@@ -1,0 +1,24 @@
+<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="5.3339099999999995">
+  <testsuite name="TS-SMOKE.spec.js" timestamp="2026-11-03T07:11:45.815Z" hostname="chromium" tests="4" failures="0" skipped="0" time="8.349" errors="0">
+    <testcase name="TS-SMOKE â€º [TEC-14] E2E-SMOKE-001 - Charger l'accueil" classname="TS-SMOKE.spec.js" time="1.791">
+      <properties>
+        <property name="test_key" value="TEC-14" />
+      </properties>
+    </testcase>
+    <testcase name="TS-SMOKE â€º [TEC-26] E2E-SMOKE-002 - Ouvrir les pages principales" classname="TS-SMOKE.spec.js" time="2.312">
+      <properties>
+        <property name="test_key" value="TEC-26" />
+      </properties>
+    </testcase>
+    <testcase name="TS-SMOKE â€º [TEC-27] E2E-SMOKE-003 - Naviguer vers le panier" classname="TS-SMOKE.spec.js" time="1.995">
+      <properties>
+        <property name="test_key" value="TEC-27" />
+      </properties>
+    </testcase>
+    <testcase name="TS-SMOKE â€º [TEC-28] E2E-SMOKE-004 - Naviguer login/register" classname="TS-SMOKE.spec.js" time="2.251">
+      <properties>
+        <property name="test_key" value="TEC-28" />
+      </properties>
+    </testcase>
+  </testsuite>
+</testsuites>

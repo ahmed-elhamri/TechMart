@@ -11,14 +11,16 @@ playwright-tests:
     - npm ci
     - npx playwright install chromium
     - npx playwright test tests/TS-SMOKE.spec.js
+    - powershell -ExecutionPolicy Bypass -File scripts/prepare-xray-results.ps1
   artifacts:
-    when: always
-    paths:
-      - playwright-report/
-      - junit-results.xml
-    reports:
-      junit: junit-results.xml
-    expire_in: 30 days
+  when: always
+  paths:
+    - playwright-report/
+    - junit-results.xml
+    - xray-junit-results.xml
+  reports:
+    junit: junit-results.xml
+  expire_in: 30 days
 
 xray-auth-check:
   stage: xray
