@@ -85,9 +85,13 @@ $executionInfo = @{
     }
 }
 
-$executionInfo |
-    ConvertTo-Json -Depth 10 |
-    Set-Content -Path $outputFile -Encoding UTF8
+$jsonContent = $executionInfo | ConvertTo-Json -Depth 10
+
+[System.IO.File]::WriteAllText(
+    $outputFile,
+    $jsonContent,
+    (New-Object System.Text.UTF8Encoding($false))
+)
 
 Write-Host "Métadonnées générées : $outputFile"
 Write-Host "Test Plan associé : TEC-124"
