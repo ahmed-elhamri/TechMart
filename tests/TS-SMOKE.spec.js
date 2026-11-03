@@ -16,7 +16,7 @@ test.describe('TS-SMOKE', () => {
 
     await catalogPage.open();
     await catalogPage.verifyCatalogPageIsDisplayed();
-    await catalogPage.verifyCartCount("0");
+    await catalogPage.verifyCartCount("10");
     await catalogPage.verifyProductsAreDisplayed();
   });
 
