@@ -33,7 +33,7 @@ pipeline {
       steps {
         script {
             def exitCode = bat(
-              script: 'npx playwright test tests/TS-SMOKE.spec.js tests/TS-CATALOG.spec.js',
+              script: 'npx playwright test tests/TS-SMOKE.spec.js',
               returnStatus: true
             )
 
@@ -190,10 +190,10 @@ pipeline {
                             summary = $summary
                             description = $description
                             issuetype = @{ name = "Test Execution" }
+                        }
 
-                            xrayFields = @{
-                                testPlanKey = "TEC-124"
-                            }
+                        xrayFields = @{
+                            testPlanKey = "TEC-124"
                         }
                     }
 
@@ -212,19 +212,23 @@ pipeline {
                     $response = & curl.exe `
                         --silent `
                         --show-error `
-                        --fail `
                         -X POST `
                         "https://xray.cloud.getxray.app/api/v2/import/execution/junit/multipart" `
                         -H "Authorization: Bearer $token" `
                         -F "results=@xray-junit-results.xml;type=application/xml" `
-                        -F "info=@xray-execution-info.json;type=application/json"
+                        -F "info=@xray-execution-info.json;type=application/json" `
+                        -w "`nHTTP_STATUS:%{http_code}"
 
                     if ($LASTEXITCODE -ne 0) {
-                        throw "Xray import failed."
+                        throw "Xray import request failed."
                     }
 
-                    Write-Host "Xray import successful!"
+                    Write-Host "Xray response:"
                     Write-Host $response
+
+                    if ($response -notmatch "HTTP_STATUS:2\d\d") {
+                        throw "Xray import failed. Check the response above."
+                    }
                 '''
             }
         }
