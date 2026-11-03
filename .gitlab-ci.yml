@@ -1,6 +1,7 @@
 stages:
   - test
   - xray
+  - deploy
 
 playwright-tests:
   stage: test
@@ -32,3 +33,28 @@ xray-import:
     - playwright-tests
   script:
     - powershell -ExecutionPolicy Bypass -File scripts/import-xray-results.ps1
+
+pages:
+  stage: deploy
+  tags:
+    - windows
+    - playwright
+  when: always
+  dependencies:
+    - playwright-tests
+  script:
+    - |
+      if (-not (Test-Path "playwright-report/index.html")) {
+          throw "Rapport Playwright introuvable."
+      }
+
+      New-Item -ItemType Directory -Force -Path "public" | Out-Null
+
+      Copy-Item -Path "playwright-report/*" -Destination "public" -Recurse -Force
+
+      Write-Host "Rapport Playwright prêt pour publication."
+  pages:
+    publish: public
+  artifacts:
+    paths:
+      - public/
