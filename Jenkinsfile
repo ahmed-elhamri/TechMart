@@ -138,6 +138,8 @@ pipeline {
                 $testSuite.GetAttribute("name")
             )
 
+            $suiteName = $suiteName -replace '\.spec$', ''
+
             $reportUrl = "$env:BUILD_URL" + "Playwright_20HTML_20Report/"
 
             $summary = "Playwright $suiteName - Build #$env:BUILD_NUMBER"
