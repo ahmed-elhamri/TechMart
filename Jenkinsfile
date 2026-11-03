@@ -33,7 +33,7 @@ pipeline {
       steps {
         script {
             def exitCode = bat(
-              script: 'npx playwright test tests/TS-SMOKE.spec.js',
+              script: 'npx playwright test tests/TS-SMOKE.spec.js tests/TS-CATALOG.spec.js',
               returnStatus: true
             )
 
@@ -138,7 +138,7 @@ pipeline {
                 $testSuite.GetAttribute("name")
             )
 
-            $suiteName = $suiteName -replace '\.spec$', ''
+            $suiteName = $suiteName.Replace(".spec", "")
 
             $reportUrl = "$env:BUILD_URL" + "Playwright_20HTML_20Report/"
 
