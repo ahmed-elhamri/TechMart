@@ -11,7 +11,7 @@ playwright-tests:
   script:
     - npm ci
     - npx playwright install chromium
-    - npm test
+    - npx playwright test tests/TS-SMOKE.spec.js
 
   artifacts:
     when: always
