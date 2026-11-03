@@ -29,40 +29,6 @@ pipeline {
             }
         }
 
-        // stage('Xray Authentication') {
-        //     steps {
-        //         withCredentials([
-        //             string(credentialsId: 'xray-client-id', variable: 'XRAY_CLIENT_ID'),
-        //             string(credentialsId: 'xray-client-secret', variable: 'XRAY_CLIENT_SECRET')
-        //         ]) {
-        //             powershell '''
-        //                 $body = @{
-        //                     client_id = $env:XRAY_CLIENT_ID
-        //                     client_secret = $env:XRAY_CLIENT_SECRET
-        //                 } | ConvertTo-Json
-        
-        //                 try {
-        //                     $response = Invoke-RestMethod `
-        //                         -Uri "https://xray.cloud.getxray.app/api/v2/authenticate" `
-        //                         -Method Post `
-        //                         -ContentType "application/json" `
-        //                         -Body $body
-        
-        //                     if (-not $response) {
-        //                         throw "Authentication failed: empty token"
-        //                     }
-        
-        //                     Write-Host "Xray authentication successful!"
-        //                 }
-        //                 catch {
-        //                     Write-Error "Xray authentication failed."
-        //                     throw
-        //                 }
-        //             '''
-        //         }
-        //     }
-        // }
-
         stage('Run Playwright Tests') {
             steps {
                 script {
@@ -109,62 +75,70 @@ pipeline {
                         if (-not (Test-Path "junit-results.xml")) {
                             throw "JUnit report not found."
                         }
-
-                        # Transform JUnit XML for Xray
+        
+                        # 3. Transform JUnit XML for Xray
                         [xml]$xml = Get-Content "junit-results.xml"
-                        
+        
                         $testCases = $xml.SelectNodes("//testcase")
                         $mappedCount = 0
-                        
+        
                         foreach ($testCase in $testCases) {
-                            if ($testCase.name -match '\\[(TEC-[0-9]+)\\]')
-                        
-                                $testKey = $Matches[1]
-                        
-                                $properties = $testCase.SelectSingleNode("properties")
-                        
-                                if (-not $properties) {
-                                    $properties = $xml.CreateElement("properties")
-                                    $testCase.AppendChild($properties) | Out-Null
+        
+                            $start = $testCase.name.IndexOf('[')
+                            $end = $testCase.name.IndexOf(']')
+        
+                            if ($start -ge 0 -and $end -gt $start) {
+        
+                                $testKey = $testCase.name.Substring(
+                                    $start + 1,
+                                    $end - $start - 1
+                                )
+        
+                                if ($testKey.StartsWith("TEC-")) {
+        
+                                    $properties = $testCase.SelectSingleNode("properties")
+        
+                                    if (-not $properties) {
+                                        $properties = $xml.CreateElement("properties")
+                                        $testCase.AppendChild($properties) | Out-Null
+                                    }
+        
+                                    $property = $xml.CreateElement("property")
+                                    $property.SetAttribute("name", "test_key")
+                                    $property.SetAttribute("value", $testKey)
+        
+                                    $properties.AppendChild($property) | Out-Null
+        
+                                    Write-Host "Mapped test to Xray: $testKey"
+        
+                                    $mappedCount++
                                 }
-                        
-                                $property = $xml.CreateElement("property")
-                                $property.SetAttribute("name", "test_key")
-                                $property.SetAttribute("value", $testKey)
-                        
-                                $properties.AppendChild($property) | Out-Null
-                        
-                                Write-Host "Mapped test to Xray: $testKey"
-                        
-                                $mappedCount++
                             }
                         }
-                        
+        
                         if ($mappedCount -ne 4) {
                             throw "Expected 4 mapped tests, but found $mappedCount."
                         }
-                        
+        
                         $xml.Save("xray-junit-results.xml")
-                        
+        
                         Write-Host "Xray JUnit report generated successfully."
         
-                        # 3. Import JUnit results into Xray
+                        # 4. Import transformed JUnit report into Xray
                         $headers = @{
                             Authorization = "Bearer $token"
                         }
-                        
+        
                         $response = Invoke-RestMethod `
                             -Uri "https://xray.cloud.getxray.app/api/v2/import/execution/junit?projectKey=TEC" `
                             -Method Post `
                             -Headers $headers `
                             -ContentType "application/xml" `
-                            -InFile "junit-results.xml"
-                        
+                            -InFile "xray-junit-results.xml"
+        
                         Write-Host "Xray import successful!"
                         $response | ConvertTo-Json -Depth 10
         
-                        Write-Host "JUnit results successfully imported into Xray."
-                        Write-Host $response
                     '''
                 }
             }
