@@ -111,18 +111,19 @@ pipeline {
                         }
         
                         # 3. Import JUnit results into Xray
-                        $response = & curl.exe `
-                            --silent `
-                            --show-error `
-                            --fail `
-                            -X POST `
-                            "https://xray.cloud.getxray.app/api/v2/import/execution/junit?projectKey=TEC" `
-                            -H "Authorization: Bearer $token" `
-                            -F "file=@junit-results.xml;type=application/xml"
-        
-                        if ($LASTEXITCODE -ne 0) {
-                            throw "Xray import failed."
+                        $headers = @{
+                            Authorization = "Bearer $token"
                         }
+                        
+                        $response = Invoke-RestMethod `
+                            -Uri "https://xray.cloud.getxray.app/api/v2/import/execution/junit?projectKey=TEC" `
+                            -Method Post `
+                            -Headers $headers `
+                            -ContentType "application/xml" `
+                            -InFile "junit-results.xml"
+                        
+                        Write-Host "Xray import successful!"
+                        $response | ConvertTo-Json -Depth 10
         
                         Write-Host "JUnit results successfully imported into Xray."
                         Write-Host $response
