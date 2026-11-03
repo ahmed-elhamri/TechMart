@@ -11,7 +11,7 @@ import { CheckoutPage } from "../pages/CheckoutPage";
 
 test.describe('TS-SMOKE', () => {
 
-  test('E2E-SMOKE-001 - Charger l\'accueil', async ({ page }) => {
+  test('[TEC-14] E2E-SMOKE-001 - Charger l\'accueil', async ({ page }) => {
     const catalogPage = new CatalogPage(page);
 
     await catalogPage.open();
@@ -20,7 +20,7 @@ test.describe('TS-SMOKE', () => {
     await catalogPage.verifyProductsAreDisplayed();
   });
 
-  test('E2E-SMOKE-002 - Ouvrir les pages principales', async ({ page }) => {
+  test('[TEC-26] E2E-SMOKE-002 - Ouvrir les pages principales', async ({ page }) => {
     const catalogPage = new CatalogPage(page);
     const loginPage = new LoginPage(page);
     const registerPage = new RegisterPage(page);
@@ -45,7 +45,7 @@ test.describe('TS-SMOKE', () => {
 
   });
 
-  test('E2E-SMOKE-003 - Naviguer vers le panier', async ({ page }) => {
+  test('[TEC-27] E2E-SMOKE-003 - Naviguer vers le panier', async ({ page }) => {
 
     const catalogPage = new CatalogPage(page);
     const cartPage = new CartPage(page);
@@ -57,7 +57,7 @@ test.describe('TS-SMOKE', () => {
   });
 
 
-  test('E2E-SMOKE-004 - Naviguer login/register', async ({ page }) => {
+  test('[TEC-28] E2E-SMOKE-004 - Naviguer login/register', async ({ page }) => {
 
     const catalogPage = new CatalogPage(page);
 
@@ -70,8 +70,3 @@ test.describe('TS-SMOKE', () => {
     await catalogPage.verifyRegisterPageUrl();
   });
 });
-
-
-
-
-

@@ -1,115 +1,12 @@
-<testsuites id="" name="" tests="10" failures="2" skipped="0" errors="0" time="24.459547999999998">
-<testsuite name="TS-CART.spec.js" timestamp="2026-10-31T21:31:01.813Z" hostname="chromium" tests="10" failures="2" skipped="0" time="38.661" errors="0">
-<testcase name="TS-CART › [E2E-CART-001] Ajouter un article" classname="TS-CART.spec.js" time="3.963">
+<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="5.3339099999999995">
+<testsuite name="TS-SMOKE.spec.js" timestamp="2026-11-03T07:11:45.815Z" hostname="chromium" tests="4" failures="0" skipped="0" time="8.349" errors="0">
+<testcase name="TS-SMOKE › [TEC-14] E2E-SMOKE-001 - Charger l&apos;accueil" classname="TS-SMOKE.spec.js" time="1.791">
 </testcase>
-<testcase name="TS-CART › [E2E-CART-002] Afficher le panier" classname="TS-CART.spec.js" time="2.929">
+<testcase name="TS-SMOKE › [TEC-26] E2E-SMOKE-002 - Ouvrir les pages principales" classname="TS-SMOKE.spec.js" time="2.312">
 </testcase>
-<testcase name="TS-CART › [E2E-CART-003] Ajouter le meme article 3 fois" classname="TS-CART.spec.js" time="2.782">
+<testcase name="TS-SMOKE › [TEC-27] E2E-SMOKE-003 - Naviguer vers le panier" classname="TS-SMOKE.spec.js" time="1.995">
 </testcase>
-<testcase name="TS-CART › [E2E-CART-004] Augmenter une quantite" classname="TS-CART.spec.js" time="3.846">
-</testcase>
-<testcase name="TS-CART › [E2E-CART-005] Diminuer une quantite" classname="TS-CART.spec.js" time="3.479">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\TS-CART-TS-CART-E2E-CART-005-Diminuer-une-quantite-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|test-results\TS-CART-TS-CART-E2E-CART-005-Diminuer-une-quantite-chromium\video.webm]]
-
-[[ATTACHMENT|test-results\TS-CART-TS-CART-E2E-CART-005-Diminuer-une-quantite-chromium\error-context.md]]
-]]>
-</system-out>
-<failure message="expect(received).toBeCloseTo(expected, precision)" type="expect.toBeCloseTo">
-<![CDATA[  [chromium] › TS-CART.spec.js:75:7 › TS-CART › [E2E-CART-005] Diminuer une quantite ───────────────
-
-    Error: expect(received).toBeCloseTo(expected, precision)
-
-    Expected: 129.99
-    Received: 259.98
-
-    Expected precision:    2
-    Expected difference: < 0.005
-    Received difference:   129.99
-
-       at ..\pages\CartPage.js:130
-
-      128 |     const totalPriceText = await this.getCartItemTotalPriceById(cartItemId);
-      129 |     const totalPriceValue = parseFloat(totalPriceText.replace('$', ''));
-    > 130 |     await expect(totalPriceValue).toBeCloseTo(expectedTotalPrice, 2);
-          |                                   ^
-      131 |   }
-      132 |
-      133 |   async verifyCartItemQuantityById(cartItemId, expectedQuantity) {
-        at CartPage.verifyCartItemTotalPriceById (C:\Users\elham\OneDrive\Desktop\Auto Formation\Playwright\TechMart\pages\CartPage.js:130:35)
-        at C:\Users\elham\OneDrive\Desktop\Auto Formation\Playwright\TechMart\tests\TS-CART.spec.js:88:5
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\TS-CART-TS-CART-E2E-CART-005-Diminuer-une-quantite-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\TS-CART-TS-CART-E2E-CART-005-Diminuer-une-quantite-chromium\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\TS-CART-TS-CART-E2E-CART-005-Diminuer-une-quantite-chromium\error-context.md
-]]>
-</failure>
-</testcase>
-<testcase name="TS-CART › [E2E-CART-006] Supprimer un article" classname="TS-CART.spec.js" time="1.162">
-</testcase>
-<testcase name="TS-CART › [E2E-CART-007] Vider plusieurs articles" classname="TS-CART.spec.js" time="2.431">
-</testcase>
-<testcase name="TS-CART › [E2E-CART-008] Conserver le panier" classname="TS-CART.spec.js" time="2.267">
-</testcase>
-<testcase name="TS-CART › [E2E-CART-009] Isoler deux paniers" classname="TS-CART.spec.js" time="2.595">
-</testcase>
-<testcase name="TS-CART › [E2E-CART-010] Refuser le depassement de stock" classname="TS-CART.spec.js" time="13.207">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|test-results\TS-CART-TS-CART-E2E-CART-010-Refuser-le-depassement-de-stock-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|test-results\TS-CART-TS-CART-E2E-CART-010-Refuser-le-depassement-de-stock-chromium\video.webm]]
-
-[[ATTACHMENT|test-results\TS-CART-TS-CART-E2E-CART-010-Refuser-le-depassement-de-stock-chromium\error-context.md]]
-]]>
-</system-out>
-<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
-<![CDATA[  [chromium] › TS-CART.spec.js:165:7 › TS-CART › [E2E-CART-010] Refuser le depassement de stock ────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: locator('.out-of-stock-message')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" locator('.out-of-stock-message') with timeout 5000ms
-      - waiting for locator('.out-of-stock-message')
-
-
-       at ..\pages\CatalogPage.js:269
-
-      267 |
-      268 |   async verifyOutOfStockMessageIsDisplayed() {
-    > 269 |     await expect(this.outOfStockMessage).toBeVisible();
-          |                                          ^
-      270 |     await expect(this.outOfStockMessage).toHaveText('Out of stock');
-      271 |   }
-      272 | }
-        at CatalogPage.verifyOutOfStockMessageIsDisplayed (C:\Users\elham\OneDrive\Desktop\Auto Formation\Playwright\TechMart\pages\CatalogPage.js:269:42)
-        at C:\Users\elham\OneDrive\Desktop\Auto Formation\Playwright\TechMart\tests\TS-CART.spec.js:178:23
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\TS-CART-TS-CART-E2E-CART-010-Refuser-le-depassement-de-stock-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\TS-CART-TS-CART-E2E-CART-010-Refuser-le-depassement-de-stock-chromium\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\TS-CART-TS-CART-E2E-CART-010-Refuser-le-depassement-de-stock-chromium\error-context.md
-]]>
-</failure>
+<testcase name="TS-SMOKE › [TEC-28] E2E-SMOKE-004 - Naviguer login/register" classname="TS-SMOKE.spec.js" time="2.251">
 </testcase>
 </testsuite>
 </testsuites>
