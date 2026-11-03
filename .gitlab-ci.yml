@@ -1,0 +1,13 @@
+stages:
+  - verify
+
+check-environment:
+  stage: verify
+  tags:
+    - windows
+    - playwright
+  script:
+    - echo "Checking Windows environment..."
+    - node --version
+    - npm --version
+    - git --version
