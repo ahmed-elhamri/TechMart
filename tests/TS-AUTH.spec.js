@@ -6,14 +6,14 @@ import testData from "../data/test-data";
 
 test.describe('TS-AUTH', () => {
 
-  test('[E2E-AUTH-001] Afficher le formulaire login', async ({ page }) => {
+  test('[TEC-51] E2E-AUTH-001 - Afficher le formulaire login', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.open();
 
     await loginPage.verifyLoginFormIsDisplayed();
   });
 
-  test('[E2E-AUTH-002] Login valide', async ({ page }) => {
+  test('[TEC-52] E2E-AUTH-002 - Login valide', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -24,7 +24,7 @@ test.describe('TS-AUTH', () => {
     await catalogPage.verifyUserIsLoggedIn();
   });
 
-  test('[E2E-AUTH-003] Login invalide', async ({ page }) => {
+  test('[TEC-53] E2E-AUTH-003 - Login invalide', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage.open();
@@ -34,7 +34,7 @@ test.describe('TS-AUTH', () => {
     await loginPage.verifyErrorMessageIsDisplayed(testData.login.errorMessages.invalidCredentials);
   });
 
-  test('[E2E-AUTH-004] Champs login obligatoires', async ({ page }) => {
+  test('[TEC-54] E2E-AUTH-004 - Champs login obligatoires', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage.open();
@@ -49,7 +49,7 @@ test.describe('TS-AUTH', () => {
     await loginPage.verifyPasswordMessageIsDisplayed(testData.login.errorMessages.requiredPasswordMessage);
   });
 
-  test('[E2E-AUTH-005] Inscription valide', async ({ page }) => {
+  test('[TEC-55] E2E-AUTH-005 - Inscription valide', async ({ page }) => {
     const registerPage = new RegisterPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -65,7 +65,7 @@ test.describe('TS-AUTH', () => {
 
   });
 
-  test('[E2E-AUTH-006] Mots de passe differents', async ({ page }) => {
+  test('[TEC-56] E2E-AUTH-006 - Mots de passe differents', async ({ page }) => {
     const registerPage = new RegisterPage(page);
 
     await registerPage.open();
@@ -80,7 +80,7 @@ test.describe('TS-AUTH', () => {
 
   });
 
-  test('[E2E-AUTH-007] Email deja utilise', async ({ page }) => {
+  test('[TEC-57] E2E-AUTH-007 - Email deja utilise', async ({ page }) => {
     const registerPage = new RegisterPage(page);
 
     await registerPage.open();
@@ -95,7 +95,7 @@ test.describe('TS-AUTH', () => {
 
   });
 
-  test('[E2E-AUTH-008] Mot de passe trop court', async ({ page }) => {
+  test('[TEC-58] E2E-AUTH-008 - Mot de passe trop court', async ({ page }) => {
     const registerPage = new RegisterPage(page);
 
     await registerPage.open();
@@ -110,7 +110,7 @@ test.describe('TS-AUTH', () => {
 
   });
 
-  test('[E2E-AUTH-009] Logout', async ({ page }) => {
+  test('[TEC-59] E2E-AUTH-009 - Logout', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -125,7 +125,7 @@ test.describe('TS-AUTH', () => {
     await catalogPage.verifyUserIsLoggedOut();
   });
 
-  test('[E2E-AUTH-010] Session apres actualisation', async ({ page }) => {
+  test('[TEC-60] E2E-AUTH-010 - Session apres actualisation', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -138,7 +138,7 @@ test.describe('TS-AUTH', () => {
     await catalogPage.verifyUserIsStillLoggedInAfterRefresh();
   });
 
-  test('[E2E-AUTH-011] Separation UI/session', async ({ page }) => {
+  test('[TEC-61] E2E-AUTH-011 - Separation UI/session', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const catalogPage = new CatalogPage(page);
 

@@ -12,7 +12,7 @@ test.describe('TS-CART', () => {
     await catalogPage.open();
   });
 
-  test('[E2E-CART-001] Ajouter un article', async ({ page }) => {
+  test('[TEC-41] E2E-CART-001 - Ajouter un article', async ({ page }) => {
 
     await catalogPage.addProductToCart('id', 1);
 
@@ -20,7 +20,7 @@ test.describe('TS-CART', () => {
 
   });
 
-  test('[E2E-CART-002] Afficher le panier', async ({ page }) => {
+  test('[TEC-42] E2E-CART-002 - Afficher le panier', async ({ page }) => {
     const cartPage = new CartPage(page);
 
     const productPrice = await catalogPage.getProductPrice('id', 1);
@@ -35,7 +35,7 @@ test.describe('TS-CART', () => {
 
   });
 
-  test('[E2E-CART-003] Ajouter le meme article 3 fois', async ({ page }) => {
+  test('[TEC-43] E2E-CART-003 - Ajouter le meme article 3 fois', async ({ page }) => {
     const cartPage = new CartPage(page);
 
     const productPrice = await catalogPage.getProductPrice('id', 1);
@@ -52,7 +52,7 @@ test.describe('TS-CART', () => {
 
   });
 
-  test('[E2E-CART-004] Augmenter une quantite', async ({ page }) => {
+  test('[TEC-44] E2E-CART-004 - Augmenter une quantite', async ({ page }) => {
     const cartPage = new CartPage(page);
 
     const productPrice = await catalogPage.getProductPrice('id', 1);
@@ -72,7 +72,7 @@ test.describe('TS-CART', () => {
 
   });
 
-  test('[E2E-CART-005] Diminuer une quantite', async ({ page }) => {
+  test('[TEC-45] E2E-CART-005 - Diminuer une quantite', async ({ page }) => {
     const cartPage = new CartPage(page);
 
     const productPrice = await catalogPage.getProductPrice('id', 1);
@@ -93,7 +93,7 @@ test.describe('TS-CART', () => {
 
   });
 
-  test('[E2E-CART-006] Supprimer un article', async ({ page }) => {
+  test('[TEC-46] E2E-CART-006 - Supprimer un article', async ({ page }) => {
     const cartPage = new CartPage(page);
 
     await catalogPage.addProductToCart('id', 1);
@@ -106,7 +106,7 @@ test.describe('TS-CART', () => {
 
   });
 
-  test('[E2E-CART-007] Vider plusieurs articles', async ({ page }) => {
+  test('[TEC-47] E2E-CART-007 - Vider plusieurs articles', async ({ page }) => {
     const cartPage = new CartPage(page);
 
     await catalogPage.addProductToCart('id', 1);
@@ -121,7 +121,7 @@ test.describe('TS-CART', () => {
 
   });
 
-  test('[E2E-CART-008] Conserver le panier', async ({ page }) => {
+  test('[TEC-48] E2E-CART-008 - Conserver le panier', async ({ page }) => {
 
     await catalogPage.addProductToCart('id', 1);
 
@@ -137,7 +137,7 @@ test.describe('TS-CART', () => {
 
   });
 
-  test('[E2E-CART-009] Isoler deux paniers', async ({ browser }) => {
+  test('[TEC-49] E2E-CART-009 - Isoler deux paniers', async ({ browser }) => {
     const contextA = await browser.newContext();
     const contextB = await browser.newContext();
 
@@ -162,7 +162,7 @@ test.describe('TS-CART', () => {
     }
   });
 
-  test('[E2E-CART-010] Refuser le depassement de stock', async ({ page }) => {
+  test('[TEC-50] E2E-CART-010 - Refuser le depassement de stock', async ({ page }) => {
 
     const productStock = await catalogPage.getProductStock('id', 1);
     const stockText = await productStock.textContent();

@@ -7,7 +7,7 @@ import testData from "../data/test-data";
 
 test.describe('TS-CHECKOUT', () => {
 
-  test('[E2E-CHECKOUT-001] Redirection panier vide', async ({ page }) => {
+  test('[TEC-62] E2E-CHECKOUT-001 - Redirection panier vide', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const cartPage = new CartPage(page);
 
@@ -17,7 +17,7 @@ test.describe('TS-CHECKOUT', () => {
 
   });
 
-  test('[E2E-CHECKOUT-002] Afficher le resume checkout', async ({ page }) => {
+  test('[TEC-63] E2E-CHECKOUT-002 - Afficher le resume checkout', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -30,7 +30,7 @@ test.describe('TS-CHECKOUT', () => {
 
   });
 
-  test('[E2E-CHECKOUT-003] Calculer la taxe', async ({ page }) => {
+  test('[TEC-64] E2E-CHECKOUT-003 - Calculer la taxe', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -43,7 +43,7 @@ test.describe('TS-CHECKOUT', () => {
 
   });
 
-  test('[E2E-CHECKOUT-004] Formater la carte', async ({ page }) => {
+  test('[TEC-65] E2E-CHECKOUT-004 - Formater la carte', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -58,7 +58,7 @@ test.describe('TS-CHECKOUT', () => {
 
   });
 
-  test('[E2E-CHECKOUT-005] Formater l\'expiration', async ({ page }) => {
+  test('[TEC-66] E2E-CHECKOUT-005 - Formater l\'expiration', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -73,7 +73,7 @@ test.describe('TS-CHECKOUT', () => {
 
   });
 
-  test('[E2E-CHECKOUT-006] Champs checkout requis', async ({ page }) => {
+  test('[TEC-67] E2E-CHECKOUT-006 - Champs checkout requis', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -129,7 +129,7 @@ test.describe('TS-CHECKOUT', () => {
     await checkoutPage.clickPlaceOrderButton();
   });
 
-  test('[E2E-CHECKOUT-007] ZIP invalide', async ({ page }) => {
+  test('[TEC-68] E2E-CHECKOUT-007 - ZIP invalide', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -155,7 +155,7 @@ test.describe('TS-CHECKOUT', () => {
     await checkoutPage.verifyFieldIsInvalid(checkoutPage.zipCodeInput);
   });
 
-  test('[E2E-CHECKOUT-008] Passer une commande', async ({ page }) => {
+  test('[TEC-69] E2E-CHECKOUT-008 - Passer une commande', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -188,7 +188,7 @@ test.describe('TS-CHECKOUT', () => {
 
   });
 
-  test('[E2E-CHECKOUT-009] Vider apres commande', async ({ page }) => {
+  test('[TEC-70] E2E-CHECKOUT-009 - Vider apres commande', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const catalogPage = new CatalogPage(page);
     const cartPage = new CartPage(page);
@@ -223,8 +223,7 @@ test.describe('TS-CHECKOUT', () => {
 
   });
 
-
-  test('[E2E-CHECKOUT-010] Decrementer le stock', async ({ page }) => {
+  test('[TEC-71] E2E-CHECKOUT-010 - Decrementer le stock', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const catalogPage = new CatalogPage(page);
 
@@ -271,7 +270,7 @@ test.describe('TS-CHECKOUT', () => {
 
   });
 
-  test('[E2E-CHECKOUT-011] Eviter double commande', async ({ page }) => {
+  test('[TEC-72] E2E-CHECKOUT-011 - Eviter double commande', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const catalogPage = new CatalogPage(page);
 

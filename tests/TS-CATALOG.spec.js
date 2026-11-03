@@ -12,7 +12,7 @@ test.describe('TS-CATALOG', () => {
     await catalogPage.open();
   });
 
-  test('[E2E-CATALOG-001] Afficher les produits', async ({ page }) => {
+  test('[TEC-30] E2E-CATALOG-001 - Afficher les produits', async ({ page }) => {
     const numberOfProducts = await catalogPage.getNumberOfProducts();
 
     for (let i = 0; i < numberOfProducts; i++) {
@@ -21,43 +21,43 @@ test.describe('TS-CATALOG', () => {
 
   });
 
-  test('[E2E-CATALOG-002] Rechercher un produit', async ({ page }) => {
+  test('[TEC-31] E2E-CATALOG-002 - Rechercher un produit', async ({ page }) => {
 
     await catalogPage.searchAndVerifyProductByButton(testData.products.searchTerm);
 
   });
 
-  test('[E2E-CATALOG-003] Rechercher avec Enter', async ({ page }) => {
+  test('[TEC-32] E2E-CATALOG-003 - Rechercher avec Enter', async ({ page }) => {
 
     await catalogPage.searchAndVerifyProductUsingEnter(testData.products.searchTerm);
 
   });
 
-  test('[E2E-CATALOG-004] Recherche sans resultat', async ({ page }) => {
+  test('[TEC-33] E2E-CATALOG-004 - Recherche sans resultat', async ({ page }) => {
 
     await catalogPage.searchAndVerifyNotFoundProduct(testData.products.invalidSearchTerm);
 
   });
 
-  test('[E2E-CATALOG-005] Recherche vide', async ({ page }) => {
+  test('[TEC-34] E2E-CATALOG-005 - Recherche vide', async ({ page }) => {
 
     await catalogPage.verifyEmptySearch();
 
   });
 
-  test('[E2E-CATALOG-006] Filtrer electronics', async ({ page }) => {
+  test('[TEC-35] E2E-CATALOG-006 - Filtrer electronics', async ({ page }) => {
 
     await catalogPage.verifyNumberOfFilteredProductsByCategory(testData.categories.electronics.name, testData.categories.electronics.count);
 
   });
 
-  test('[E2E-CATALOG-007] Filtrer accessories', async ({ page }) => {
+  test('[TEC-36] E2E-CATALOG-007 - Filtrer accessories', async ({ page }) => {
 
     await catalogPage.verifyNumberOfFilteredProductsByCategory(testData.categories.accessories.name, testData.categories.accessories.count);
 
   });
 
-  test('[E2E-CATALOG-008] Filtrer par prix', async ({ page }) => {
+  test('[TEC-37] E2E-CATALOG-008 - Filtrer par prix', async ({ page }) => {
 
     await catalogPage.filterByPriceRange(testData.products.maxPrice);
 
@@ -69,7 +69,7 @@ test.describe('TS-CATALOG', () => {
 
   });
 
-  test('[E2E-CATALOG-009] Trier prix croissant', async ({ page }) => {
+  test('[TEC-38] E2E-CATALOG-009 - Trier prix croissant', async ({ page }) => {
 
     await catalogPage.sortByOption('Price: Low to High');
 
@@ -77,7 +77,7 @@ test.describe('TS-CATALOG', () => {
 
   });
 
-  test('[E2E-CATALOG-010] Trier prix decroissant', async ({ page }) => {
+  test('[TEC-39] E2E-CATALOG-010 - Trier prix decroissant', async ({ page }) => {
 
     await catalogPage.sortByOption('Price: High to Low');
 
@@ -85,7 +85,7 @@ test.describe('TS-CATALOG', () => {
 
   });
 
-  test('[E2E-CATALOG-011] Combiner les filtres', async ({ page }) => {
+  test('[TEC-40] E2E-CATALOG-011 - Combiner les filtres', async ({ page }) => {
 
     await catalogPage.filterByCategory(testData.categories.electronics.name);
 
