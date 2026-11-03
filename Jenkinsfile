@@ -109,6 +109,45 @@ pipeline {
                         if (-not (Test-Path "junit-results.xml")) {
                             throw "JUnit report not found."
                         }
+
+                        # Transform JUnit XML for Xray
+                        [xml]$xml = Get-Content "junit-results.xml"
+                        
+                        $testCases = $xml.SelectNodes("//testcase")
+                        $mappedCount = 0
+                        
+                        foreach ($testCase in $testCases) {
+                        
+                            if ($testCase.name -match '\[(TEC-\d+)\]') {
+                        
+                                $testKey = $Matches[1]
+                        
+                                $properties = $testCase.SelectSingleNode("properties")
+                        
+                                if (-not $properties) {
+                                    $properties = $xml.CreateElement("properties")
+                                    $testCase.AppendChild($properties) | Out-Null
+                                }
+                        
+                                $property = $xml.CreateElement("property")
+                                $property.SetAttribute("name", "test_key")
+                                $property.SetAttribute("value", $testKey)
+                        
+                                $properties.AppendChild($property) | Out-Null
+                        
+                                Write-Host "Mapped test to Xray: $testKey"
+                        
+                                $mappedCount++
+                            }
+                        }
+                        
+                        if ($mappedCount -ne 4) {
+                            throw "Expected 4 mapped tests, but found $mappedCount."
+                        }
+                        
+                        $xml.Save("xray-junit-results.xml")
+                        
+                        Write-Host "Xray JUnit report generated successfully."
         
                         # 3. Import JUnit results into Xray
                         $headers = @{
