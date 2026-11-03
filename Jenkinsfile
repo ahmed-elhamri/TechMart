@@ -29,43 +29,37 @@ pipeline {
             }
         }
 
-        stage('Xray Authentication') {
-            steps {
-                withCredentials([
-                    string(credentialsId: 'xray-client-id', variable: 'XRAY_CLIENT_ID'),
-                    string(credentialsId: 'xray-client-secret', variable: 'XRAY_CLIENT_SECRET')
-                ]) {
-                    powershell '''
-                        $body = @{
-                            client_id = $env:XRAY_CLIENT_ID
-                            client_secret = $env:XRAY_CLIENT_SECRET
-                        } | ConvertTo-Json
-        
-                        try {
-                            $response = Invoke-RestMethod `
-                                -Uri "https://xray.cloud.getxray.app/api/v2/authenticate" `
-                                -Method Post `
-                                -ContentType "application/json" `
-                                -Body $body
-        
-                            if (-not $response) {
-                                throw "Authentication failed: empty token"
-                            }
-        
-                            Write-Host "Xray authentication successful!"
-                        }
-                        catch {
-                            Write-Error "Xray authentication failed."
-                            throw
-                        }
-                    '''
-                }
-            }
-        }
-        
-        // stage('Execute Playwright Tests') {
+        // stage('Xray Authentication') {
         //     steps {
-        //         bat 'npx playwright test tests/TS-CART.spec.js'
+        //         withCredentials([
+        //             string(credentialsId: 'xray-client-id', variable: 'XRAY_CLIENT_ID'),
+        //             string(credentialsId: 'xray-client-secret', variable: 'XRAY_CLIENT_SECRET')
+        //         ]) {
+        //             powershell '''
+        //                 $body = @{
+        //                     client_id = $env:XRAY_CLIENT_ID
+        //                     client_secret = $env:XRAY_CLIENT_SECRET
+        //                 } | ConvertTo-Json
+        
+        //                 try {
+        //                     $response = Invoke-RestMethod `
+        //                         -Uri "https://xray.cloud.getxray.app/api/v2/authenticate" `
+        //                         -Method Post `
+        //                         -ContentType "application/json" `
+        //                         -Body $body
+        
+        //                     if (-not $response) {
+        //                         throw "Authentication failed: empty token"
+        //                     }
+        
+        //                     Write-Host "Xray authentication successful!"
+        //                 }
+        //                 catch {
+        //                     Write-Error "Xray authentication failed."
+        //                     throw
+        //                 }
+        //             '''
+        //         }
         //     }
         // }
 
@@ -80,6 +74,59 @@ pipeline {
                     if (exitCode != 0) {
                         currentBuild.result = 'UNSTABLE'
                     }
+                }
+            }
+        }
+
+        stage('Import Results to Xray') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'xray-client-id', variable: 'XRAY_CLIENT_ID'),
+                    string(credentialsId: 'xray-client-secret', variable: 'XRAY_CLIENT_SECRET')
+                ]) {
+                    powershell '''
+                        $ErrorActionPreference = "Stop"
+        
+                        # 1. Authenticate with Xray
+                        $body = @{
+                            client_id = $env:XRAY_CLIENT_ID
+                            client_secret = $env:XRAY_CLIENT_SECRET
+                        } | ConvertTo-Json
+        
+                        $token = Invoke-RestMethod `
+                            -Uri "https://xray.cloud.getxray.app/api/v2/authenticate" `
+                            -Method Post `
+                            -ContentType "application/json" `
+                            -Body $body
+        
+                        if (-not $token) {
+                            throw "Xray authentication failed."
+                        }
+        
+                        Write-Host "Xray authentication successful."
+        
+                        # 2. Check JUnit report
+                        if (-not (Test-Path "junit-results.xml")) {
+                            throw "JUnit report not found."
+                        }
+        
+                        # 3. Import JUnit results into Xray
+                        $response = & curl.exe `
+                            --silent `
+                            --show-error `
+                            --fail `
+                            -X POST `
+                            "https://xray.cloud.getxray.app/api/v2/import/execution/junit?projectKey=TEC" `
+                            -H "Authorization: Bearer $token" `
+                            -F "file=@junit-results.xml;type=application/xml"
+        
+                        if ($LASTEXITCODE -ne 0) {
+                            throw "Xray import failed."
+                        }
+        
+                        Write-Host "JUnit results successfully imported into Xray."
+                        Write-Host $response
+                    '''
                 }
             }
         }
