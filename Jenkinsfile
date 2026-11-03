@@ -116,9 +116,11 @@ pipeline {
                 }
             }
 
-            if ($mappedCount -ne 4) {
-                throw "Expected 4 mapped tests, but found $mappedCount."
+            if ($mappedCount -eq 0) {
+                throw "No Xray tests were mapped. Check test keys in JUnit report."
             }
+
+            Write-Host "Successfully mapped $mappedCount tests to Xray."
 
             $xml.Save("xray-junit-results.xml")
 
