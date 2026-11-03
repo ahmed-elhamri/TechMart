@@ -1,0 +1,15 @@
+{
+  "xrayFields": {
+    "testPlanKey": "TEC-124"
+  },
+  "fields": {
+    "summary": "Playwright Automated Test Execution - 03/11/2026 21:01:13",
+    "issuetype": {
+      "name": "Test Execution"
+    },
+    "project": {
+      "key": "TEC"
+    },
+    "description": "Test Suite: TS-SMOKE\r\n\r\nEXECUTION SUMMARY\r\n-----------------\r\nTotal Tests: 4\r\nPassed: 4\r\nFailed: 0\r\nSkipped: 0\r\nErrors: 0\r\nDuration: 5.33391 seconds\r\n\r\nGITLAB INFORMATION\r\n------------------\r\nPipeline ID: \r\nBranch: \r\nPipeline URL: \r\nHTML Report: \r\nExecution Date: 03/11/2026 21:01:13"
+  }
+}
