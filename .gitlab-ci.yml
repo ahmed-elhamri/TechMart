@@ -22,36 +22,13 @@ playwright-tests:
       junit: junit-results.xml
     expire_in: 30 days
 
-xray-auth-check:
+xray-import:
   stage: xray
   tags:
     - windows
     - playwright
+  when: always
+  dependencies:
+    - playwright-tests
   script:
-    - |
-      if (-not $env:XRAY_CLIENT_ID -or -not $env:XRAY_CLIENT_SECRET) {
-          throw "Les variables Xray sont manquantes."
-      }
-
-      $body = @{
-          client_id = $env:XRAY_CLIENT_ID
-          client_secret = $env:XRAY_CLIENT_SECRET
-      } | ConvertTo-Json
-
-      try {
-          $token = Invoke-RestMethod `
-              -Uri "https://xray.cloud.getxray.app/api/v2/authenticate" `
-              -Method POST `
-              -ContentType "application/json" `
-              -Body $body
-
-          if (-not $token) {
-              throw "Token Xray vide."
-          }
-
-          Write-Host "Authentification Xray réussie."
-      }
-      catch {
-          Write-Host "Échec de l'authentification Xray."
-          throw
-      }
+    - powershell -ExecutionPolicy Bypass -File scripts/import-xray-results.ps1
