@@ -226,7 +226,8 @@ pipeline {
                     Write-Host "Xray response:"
                     Write-Host $response
 
-                    if ($response -notmatch "HTTP_STATUS:2\d\d") {
+                    if (-not $response.Contains("HTTP_STATUS:200") -and
+                        -not $response.Contains("HTTP_STATUS:201")) {
                         throw "Xray import failed. Check the response above."
                     }
                 '''
