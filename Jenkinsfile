@@ -117,8 +117,7 @@ pipeline {
                         $mappedCount = 0
                         
                         foreach ($testCase in $testCases) {
-                        
-                            if ($testCase.name -match '\[(TEC-\d+)\]') {
+                            if ($testCase.name -match '\\[(TEC-[0-9]+)\\]')
                         
                                 $testKey = $Matches[1]
                         
