@@ -28,6 +28,40 @@ pipeline {
                 bat 'npx playwright install chromium'
             }
         }
+
+        stage('Xray Authentication') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'xray-client-id', variable: 'XRAY_CLIENT_ID'),
+                    string(credentialsId: 'xray-client-secret', variable: 'XRAY_CLIENT_SECRET')
+                ]) {
+                    powershell '''
+                        $body = @{
+                            client_id = $env:XRAY_CLIENT_ID
+                            client_secret = $env:XRAY_CLIENT_SECRET
+                        } | ConvertTo-Json
+        
+                        try {
+                            $response = Invoke-RestMethod `
+                                -Uri "https://xray.cloud.getxray.app/api/v2/authenticate" `
+                                -Method Post `
+                                -ContentType "application/json" `
+                                -Body $body
+        
+                            if (-not $response) {
+                                throw "Authentication failed: empty token"
+                            }
+        
+                            Write-Host "Xray authentication successful!"
+                        }
+                        catch {
+                            Write-Error "Xray authentication failed."
+                            throw
+                        }
+                    '''
+                }
+            }
+        }
         
         // stage('Execute Playwright Tests') {
         //     steps {
@@ -39,7 +73,7 @@ pipeline {
             steps {
                 script {
                     def exitCode = bat(
-                        script: 'npx playwright test tests/TS-CART.spec.js',
+                        script: 'npx playwright test tests/TS-SMOKE.spec.js',
                         returnStatus: true
                     )
 
