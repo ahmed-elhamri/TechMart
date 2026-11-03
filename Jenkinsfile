@@ -190,6 +190,10 @@ pipeline {
                             summary = $summary
                             description = $description
                             issuetype = @{ name = "Test Execution" }
+
+                            xrayFields = @{
+                                testPlanKey = "TEC-124"
+                            }
                         }
                     }
 
