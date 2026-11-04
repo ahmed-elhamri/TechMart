@@ -9,10 +9,27 @@ playwright-tests:
     - windows
     - playwright
   script:
-    - npm ci
-    - npx playwright install chromium
-    - npx playwright test
-    - powershell -ExecutionPolicy Bypass -File scripts/prepare-xray-results.ps1
+  - npm ci
+  - npx playwright install chromium
+  - |
+      Remove-Item "junit-results.xml" -ErrorAction SilentlyContinue
+      Remove-Item "xray-junit-results.xml" -ErrorAction SilentlyContinue
+      Remove-Item "playwright-report" -Recurse -Force -ErrorAction SilentlyContinue
+
+      npx playwright test
+      $testExitCode = $LASTEXITCODE
+
+      if (-not (Test-Path "junit-results.xml")) {
+          throw "Le rapport JUnit n'a pas été généré."
+      }
+
+      & .\scripts\prepare-xray-results.ps1
+
+      if ($LASTEXITCODE -ne 0) {
+          throw "La préparation des résultats Xray a échoué."
+      }
+
+      exit $testExitCode
   artifacts:
     when: always
     paths:
