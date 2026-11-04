@@ -11,7 +11,7 @@ playwright-tests:
   script:
     - npm ci
     - npx playwright install chromium
-    - npx playwright test tests/TS-SMOKE.spec.js
+    - npx playwright test
     - powershell -ExecutionPolicy Bypass -File scripts/prepare-xray-results.ps1
   artifacts:
     when: always
