@@ -320,7 +320,7 @@ test.describe('TS-CHECKOUT', () => {
 
   });
 
-  test('[E2E-CHECKOUT-012] Stock insuffisant checkout ', async ({ page }) => {
+  test('[TEC-73] E2E-CHECKOUT-012 - Stock insuffisant checkout ', async ({ page }) => {
     const checkoutPage = new CheckoutPage(page);
     const catalogPage = new CatalogPage(page);
 
