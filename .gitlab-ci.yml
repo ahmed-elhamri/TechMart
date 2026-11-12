@@ -13,22 +13,7 @@ playwright-tests:
   - npx playwright install chromium
   - |
       Remove-Item "junit-results.xml" -ErrorAction SilentlyContinue
-      Remove-Item "xray-junit-results.xml" -ErrorAction SilentlyContinue
-      Remove-Item "playwright-report" -Recurse -Force -ErrorAction SilentlyContinue
-
-      npx playwright test
-      $testExitCode = $LASTEXITCODE
-
-      if (-not (Test-Path "junit-results.xml")) {
-          throw "Le rapport JUnit n'a pas été généré."
-      }
-
-      & .\scripts\prepare-xray-results.ps1
-
-      if ($LASTEXITCODE -ne 0) {
-          throw "La préparation des résultats Xray a échoué."
-      }
-
+      ...
       exit $testExitCode
   artifacts:
     when: always
@@ -62,13 +47,7 @@ pages:
   script:
     - |
       if (-not (Test-Path "playwright-report/index.html")) {
-          throw "Rapport Playwright introuvable."
-      }
-
-      New-Item -ItemType Directory -Force -Path "public" | Out-Null
-
-      Copy-Item -Path "playwright-report/*" -Destination "public" -Recurse -Force
-
+      ...
       Write-Host "Rapport Playwright prêt pour publication."
   pages:
     publish: public

@@ -1,12 +1,210 @@
-<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="5.3339099999999995">
-<testsuite name="TS-SMOKE.spec.js" timestamp="2026-11-03T07:11:45.815Z" hostname="chromium" tests="4" failures="0" skipped="0" time="8.349" errors="0">
-<testcase name="TS-SMOKE › [TEC-14] E2E-SMOKE-001 - Charger l&apos;accueil" classname="TS-SMOKE.spec.js" time="1.791">
+<testsuites id="" name="" tests="48" failures="2" skipped="0" errors="0" time="35.485038">
+<testsuite name="TS-AUTH.spec.js" timestamp="2026-11-11T21:53:04.081Z" hostname="chromium" tests="11" failures="0" skipped="0" time="25.868" errors="0">
+<testcase name="TS-AUTH › [TEC-51] E2E-AUTH-001 - Afficher le formulaire login" classname="TS-AUTH.spec.js" time="1.8">
 </testcase>
-<testcase name="TS-SMOKE › [TEC-26] E2E-SMOKE-002 - Ouvrir les pages principales" classname="TS-SMOKE.spec.js" time="2.312">
+<testcase name="TS-AUTH › [TEC-52] E2E-AUTH-002 - Login valide" classname="TS-AUTH.spec.js" time="3.546">
 </testcase>
-<testcase name="TS-SMOKE › [TEC-27] E2E-SMOKE-003 - Naviguer vers le panier" classname="TS-SMOKE.spec.js" time="1.995">
+<testcase name="TS-AUTH › [TEC-53] E2E-AUTH-003 - Login invalide" classname="TS-AUTH.spec.js" time="1.868">
 </testcase>
-<testcase name="TS-SMOKE › [TEC-28] E2E-SMOKE-004 - Naviguer login/register" classname="TS-SMOKE.spec.js" time="2.251">
+<testcase name="TS-AUTH › [TEC-54] E2E-AUTH-004 - Champs login obligatoires" classname="TS-AUTH.spec.js" time="2.1">
+</testcase>
+<testcase name="TS-AUTH › [TEC-55] E2E-AUTH-005 - Inscription valide" classname="TS-AUTH.spec.js" time="3.489">
+</testcase>
+<testcase name="TS-AUTH › [TEC-56] E2E-AUTH-006 - Mots de passe differents" classname="TS-AUTH.spec.js" time="1.379">
+</testcase>
+<testcase name="TS-AUTH › [TEC-57] E2E-AUTH-007 - Email deja utilise" classname="TS-AUTH.spec.js" time="1.54">
+</testcase>
+<testcase name="TS-AUTH › [TEC-58] E2E-AUTH-008 - Mot de passe trop court" classname="TS-AUTH.spec.js" time="0.996">
+</testcase>
+<testcase name="TS-AUTH › [TEC-59] E2E-AUTH-009 - Logout" classname="TS-AUTH.spec.js" time="3.096">
+</testcase>
+<testcase name="TS-AUTH › [TEC-60] E2E-AUTH-010 - Session apres actualisation" classname="TS-AUTH.spec.js" time="3.044">
+</testcase>
+<testcase name="TS-AUTH › [TEC-61] E2E-AUTH-011 - Separation UI/session" classname="TS-AUTH.spec.js" time="3.01">
+</testcase>
+</testsuite>
+<testsuite name="TS-CART.spec.js" timestamp="2026-11-11T21:53:04.081Z" hostname="chromium" tests="10" failures="1" skipped="0" time="28.443" errors="0">
+<testcase name="TS-CART › [TEC-41] E2E-CART-001 - Ajouter un article" classname="TS-CART.spec.js" time="0.653">
+</testcase>
+<testcase name="TS-CART › [TEC-42] E2E-CART-002 - Afficher le panier" classname="TS-CART.spec.js" time="1.005">
+</testcase>
+<testcase name="TS-CART › [TEC-43] E2E-CART-003 - Ajouter le meme article 3 fois" classname="TS-CART.spec.js" time="3.004">
+</testcase>
+<testcase name="TS-CART › [TEC-44] E2E-CART-004 - Augmenter une quantite" classname="TS-CART.spec.js" time="1.35">
+</testcase>
+<testcase name="TS-CART › [TEC-45] E2E-CART-005 - Diminuer une quantite" classname="TS-CART.spec.js" time="2.443">
+</testcase>
+<testcase name="TS-CART › [TEC-46] E2E-CART-006 - Supprimer un article" classname="TS-CART.spec.js" time="1.323">
+</testcase>
+<testcase name="TS-CART › [TEC-47] E2E-CART-007 - Vider plusieurs articles" classname="TS-CART.spec.js" time="1.528">
+</testcase>
+<testcase name="TS-CART › [TEC-48] E2E-CART-008 - Conserver le panier" classname="TS-CART.spec.js" time="1.305">
+</testcase>
+<testcase name="TS-CART › [TEC-49] E2E-CART-009 - Isoler deux paniers" classname="TS-CART.spec.js" time="2.489">
+</testcase>
+<testcase name="TS-CART › [TEC-50] E2E-CART-010 - Refuser le depassement de stock" classname="TS-CART.spec.js" time="13.343">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\TS-CART-TS-CART-TEC-50-E2E-ae36e-ser-le-depassement-de-stock-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\TS-CART-TS-CART-TEC-50-E2E-ae36e-ser-le-depassement-de-stock-chromium\video.webm]]
+
+[[ATTACHMENT|test-results\TS-CART-TS-CART-TEC-50-E2E-ae36e-ser-le-depassement-de-stock-chromium\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [chromium] › TS-CART.spec.js:165:7 › TS-CART › [TEC-50] E2E-CART-010 - Refuser le depassement de stock 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.out-of-stock-message')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.out-of-stock-message') with timeout 5000ms
+      - waiting for locator('.out-of-stock-message')
+
+
+       at ..\pages\CatalogPage.js:216
+
+      214 |     await this.searchProductsByClickingButtonSearch(searchTerm);
+      215 |     await expect(this.productsDiv).toHaveText('No products found matching your criteria.');
+    > 216 |   }
+          |    ^
+      217 |
+      218 |   async verifyEmptySearch() {
+      219 |     await this.searchProductsByClickingButtonSearch('');
+        at CatalogPage.verifyOutOfStockMessageIsDisplayed (C:\Users\elham\OneDrive\Desktop\Auto Formation\Playwright\TechMart\pages\CatalogPage.js:216:53)
+        at C:\Users\elham\OneDrive\Desktop\Auto Formation\Playwright\TechMart\tests\TS-CART.spec.js:178:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\TS-CART-TS-CART-TEC-50-E2E-ae36e-ser-le-depassement-de-stock-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\TS-CART-TS-CART-TEC-50-E2E-ae36e-ser-le-depassement-de-stock-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\TS-CART-TS-CART-TEC-50-E2E-ae36e-ser-le-depassement-de-stock-chromium\error-context.md
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="TS-CATALOG.spec.js" timestamp="2026-11-11T21:53:04.081Z" hostname="chromium" tests="11" failures="0" skipped="0" time="15.501" errors="0">
+<testcase name="TS-CATALOG › [TEC-30] E2E-CATALOG-001 - Afficher les produits" classname="TS-CATALOG.spec.js" time="2.207">
+</testcase>
+<testcase name="TS-CATALOG › [TEC-31] E2E-CATALOG-002 - Rechercher un produit" classname="TS-CATALOG.spec.js" time="0.979">
+</testcase>
+<testcase name="TS-CATALOG › [TEC-32] E2E-CATALOG-003 - Rechercher avec Enter" classname="TS-CATALOG.spec.js" time="1.624">
+</testcase>
+<testcase name="TS-CATALOG › [TEC-33] E2E-CATALOG-004 - Recherche sans resultat" classname="TS-CATALOG.spec.js" time="1.031">
+</testcase>
+<testcase name="TS-CATALOG › [TEC-34] E2E-CATALOG-005 - Recherche vide" classname="TS-CATALOG.spec.js" time="2.049">
+</testcase>
+<testcase name="TS-CATALOG › [TEC-35] E2E-CATALOG-006 - Filtrer electronics" classname="TS-CATALOG.spec.js" time="1.768">
+</testcase>
+<testcase name="TS-CATALOG › [TEC-36] E2E-CATALOG-007 - Filtrer accessories" classname="TS-CATALOG.spec.js" time="1.734">
+</testcase>
+<testcase name="TS-CATALOG › [TEC-37] E2E-CATALOG-008 - Filtrer par prix" classname="TS-CATALOG.spec.js" time="0.866">
+</testcase>
+<testcase name="TS-CATALOG › [TEC-38] E2E-CATALOG-009 - Trier prix croissant" classname="TS-CATALOG.spec.js" time="1.171">
+</testcase>
+<testcase name="TS-CATALOG › [TEC-39] E2E-CATALOG-010 - Trier prix decroissant" classname="TS-CATALOG.spec.js" time="1.077">
+</testcase>
+<testcase name="TS-CATALOG › [TEC-40] E2E-CATALOG-011 - Combiner les filtres" classname="TS-CATALOG.spec.js" time="0.995">
+</testcase>
+</testsuite>
+<testsuite name="TS-CHECKOUT.spec.js" timestamp="2026-11-11T21:53:04.081Z" hostname="chromium" tests="12" failures="1" skipped="0" time="28.715" errors="0">
+<testcase name="TS-CHECKOUT › [TEC-62] E2E-CHECKOUT-001 - Redirection panier vide" classname="TS-CHECKOUT.spec.js" time="0.947">
+</testcase>
+<testcase name="TS-CHECKOUT › [TEC-63] E2E-CHECKOUT-002 - Afficher le resume checkout" classname="TS-CHECKOUT.spec.js" time="1.006">
+</testcase>
+<testcase name="TS-CHECKOUT › [TEC-64] E2E-CHECKOUT-003 - Calculer la taxe" classname="TS-CHECKOUT.spec.js" time="1.199">
+</testcase>
+<testcase name="TS-CHECKOUT › [TEC-65] E2E-CHECKOUT-004 - Formater la carte" classname="TS-CHECKOUT.spec.js" time="1.045">
+<system-out>
+<![CDATA[Card Number Value: 4111 1111 1111 1111
+]]>
+</system-out>
+</testcase>
+<testcase name="TS-CHECKOUT › [TEC-66] E2E-CHECKOUT-005 - Formater l&apos;expiration" classname="TS-CHECKOUT.spec.js" time="1.032">
+<system-out>
+<![CDATA[Expiry Date Value: 12/30
+]]>
+</system-out>
+</testcase>
+<testcase name="TS-CHECKOUT › [TEC-67] E2E-CHECKOUT-006 - Champs checkout requis" classname="TS-CHECKOUT.spec.js" time="2.879">
+</testcase>
+<testcase name="TS-CHECKOUT › [TEC-68] E2E-CHECKOUT-007 - ZIP invalide" classname="TS-CHECKOUT.spec.js" time="2.112">
+</testcase>
+<testcase name="TS-CHECKOUT › [TEC-69] E2E-CHECKOUT-008 - Passer une commande" classname="TS-CHECKOUT.spec.js" time="2.061">
+</testcase>
+<testcase name="TS-CHECKOUT › [TEC-70] E2E-CHECKOUT-009 - Vider apres commande" classname="TS-CHECKOUT.spec.js" time="1.633">
+</testcase>
+<testcase name="TS-CHECKOUT › [TEC-71] E2E-CHECKOUT-010 - Decrementer le stock" classname="TS-CHECKOUT.spec.js" time="1.865">
+</testcase>
+<testcase name="TS-CHECKOUT › [TEC-72] E2E-CHECKOUT-011 - Eviter double commande" classname="TS-CHECKOUT.spec.js" time="1.868">
+</testcase>
+<testcase name="TS-CHECKOUT › [TEC-73] E2E-CHECKOUT-012 - Stock insuffisant checkout " classname="TS-CHECKOUT.spec.js" time="11.068">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\TS-CHECKOUT-TS-CHECKOUT-TE-a3d72-Stock-insuffisant-checkout--chromium\test-failed-1.png]]
+
+[[ATTACHMENT|test-results\TS-CHECKOUT-TS-CHECKOUT-TE-a3d72-Stock-insuffisant-checkout--chromium\video.webm]]
+
+[[ATTACHMENT|test-results\TS-CHECKOUT-TS-CHECKOUT-TE-a3d72-Stock-insuffisant-checkout--chromium\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [chromium] › TS-CHECKOUT.spec.js:323:7 › TS-CHECKOUT › [TEC-73] E2E-CHECKOUT-012 - Stock insuffisant checkout  
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.out-of-stock-message')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.out-of-stock-message') with timeout 5000ms
+      - waiting for locator('.out-of-stock-message')
+
+
+       at ..\pages\CheckoutPage.js:178
+
+      176 |
+      177 |   async fillCVV(cvv) {
+    > 178 |     await this.cvvInput.fill(cvv);
+          |                                                     ^
+      179 |   }
+      180 |
+      181 |   async fillShippingInformation(firstName, lastName, streetAddress, streetAddress2, city, state, zipCode, phoneNumber) {
+        at CheckoutPage.verifyOutOfStockMessageIsDisplayed (C:\Users\elham\OneDrive\Desktop\Auto Formation\Playwright\TechMart\pages\CheckoutPage.js:178:53)
+        at C:\Users\elham\OneDrive\Desktop\Auto Formation\Playwright\TechMart\tests\TS-CHECKOUT.spec.js:364:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\TS-CHECKOUT-TS-CHECKOUT-TE-a3d72-Stock-insuffisant-checkout--chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\TS-CHECKOUT-TS-CHECKOUT-TE-a3d72-Stock-insuffisant-checkout--chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\TS-CHECKOUT-TS-CHECKOUT-TE-a3d72-Stock-insuffisant-checkout--chromium\error-context.md
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="TS-SMOKE.spec.js" timestamp="2026-11-11T21:53:04.081Z" hostname="chromium" tests="4" failures="0" skipped="0" time="4" errors="0">
+<testcase name="TS-SMOKE › [TEC-14] E2E-SMOKE-001 - Charger l&apos;accueil" classname="TS-SMOKE.spec.js" time="0.94">
+</testcase>
+<testcase name="TS-SMOKE › [TEC-26] E2E-SMOKE-002 - Ouvrir les pages principales" classname="TS-SMOKE.spec.js" time="1.203">
+</testcase>
+<testcase name="TS-SMOKE › [TEC-27] E2E-SMOKE-003 - Naviguer vers le panier" classname="TS-SMOKE.spec.js" time="0.888">
+</testcase>
+<testcase name="TS-SMOKE › [TEC-28] E2E-SMOKE-004 - Naviguer login/register" classname="TS-SMOKE.spec.js" time="0.969">
 </testcase>
 </testsuite>
 </testsuites>

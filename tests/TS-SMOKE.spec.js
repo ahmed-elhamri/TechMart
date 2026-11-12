@@ -6,9 +6,6 @@ import { CartPage } from "../pages/CartPage";
 import { CheckoutPage } from "../pages/CheckoutPage";
 
 
-
-
-
 test.describe('TS-SMOKE', () => {
 
   test('[TEC-14] E2E-SMOKE-001 - Charger l\'accueil', async ({ page }) => {
